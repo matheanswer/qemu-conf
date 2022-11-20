@@ -26,11 +26,11 @@ OPTIONS=(
 -cpu host
 -enable-kvm
 -device virtio-tablet-pci
--nic bridge,br=br0,model=virtio-net-pci,mac=$macaddr
+-nic bridge,br=br0,model=virtio-net-pci,mac="$macaddr"
 -drive if=virtio,format=qcow2,file=images/Arch-Linux-x86_64-cloudimg-snapshot.qcow2
 -drive if=virtio,format=raw,file=images/seed.img
 -smbios type=1,manufacturer="QEMU",product="QEMU/KVM",version="$version",family="Virtual Machine"
--vnc :$number,websocket=on
+-vnc :"$number",websocket=on
 #set boot device, c=disk, d=cdrom
 -snapshot
 #-nographic
