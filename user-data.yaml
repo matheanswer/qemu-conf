@@ -1,0 +1,30 @@
+#cloud-config
+
+system_info:
+  default_user:
+    name: punoko
+    shell: /usr/bin/zsh
+    plain_text_passwd: punoko
+    lock_passwd: false
+    gecos:
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEPdW6nXnB/WM4wJsr0gTyX3hlIoLuwL2ZCHMg/Pl9/ punoko
+
+packages_update: true
+packages_upgrade: true
+packages:
+  - zsh
+  - grml-zsh-config
+  - neovim
+  - neofetch
+  - wireguard-tools
+  - htop
+  - rsync
+  - man-db
+
+timezone: Europe/Paris
+
+runcmd:
+  - install -o punoko -g punoko /etc/skel/.zshrc /home/punoko/.zshrc
+  - chsh -s /usr/bin/zsh root

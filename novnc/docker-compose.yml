@@ -1,0 +1,9 @@
+services:
+
+  novnc:
+    container_name: novnc
+    build: .
+    image: novnc
+    ports:
+      - "80:80"
+    restart: always
