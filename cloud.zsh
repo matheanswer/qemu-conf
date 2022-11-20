@@ -7,6 +7,8 @@ url="http://vnc.home?path=&host=$host&port=$port"
 
 echo "noVNC : $url"
 
+#echo -e "instance-id: iid-local01\nlocal-hostname: cloudimg" > meta-data
+#use uuidgen to make random isntance-id ?
 cloud-localds images/seed.img user-data.yaml meta-data.yaml
 
 #create snapshot
@@ -16,7 +18,7 @@ cloud-localds images/seed.img user-data.yaml meta-data.yaml
 #cp images/Arch-Linux-x86_64-cloudimg.qcow2 images/Arch-Linux-x86_64-cloudimg-copy.qcow2
 #qemu-img resize images/Arch-Linux-x86_64-cloudimg-snapshot.qcow2 20G
 
-printf -v version %s $(qemu-system-x86_64 --version | head -1 | sed 's/QEMU emulator version //')
+printf -v version %s $(qemu-system-x86_64 --version | grep -Eom 1 "[0-9.]+")
 
 OPTIONS=(
 -m 4G
